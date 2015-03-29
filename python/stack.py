@@ -54,3 +54,32 @@ def revstring(mystr):
 print(revstring('apple'))
 print(revstring('x'))
 print(revstring('987654321'))
+
+
+# write a function using a stack to check if the parentheses in a string are balanced
+
+def parChecker(symbolStr):
+    s = Stack()
+    balanced = True
+    index = 0
+
+    while index < len(symbolStr) and balanced:
+        symbol = symbolStr[index]
+        if symbol == "(":
+            s.push(symbol)
+        else:
+            if s.isEmpty():
+                balanced = False
+            else:
+                s.pop()
+        index += 1
+
+    if balanced and s.isEmpty():
+        return True
+    else:
+        return False
+
+print(parChecker('((()))'))
+print(parChecker('(()'))
+
+
