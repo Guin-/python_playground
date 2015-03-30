@@ -82,4 +82,37 @@ def parChecker(symbolStr):
 print(parChecker('((()))'))
 print(parChecker('(()'))
 
+# updated to check for balance of symbols {[()]}
+
+def symChecker(symbolStr):
+    s = Stack()
+    balanced = True
+    index = 0
+    while index < len(symbolStr) and balanced:
+        symbol = symbolStr[index]
+        if symbol in "([{":
+            s.push(symbol)
+        else:
+            if s.isEmpty():
+                balanced = False
+            else:
+                top = s.pop()
+                if not matches(top, symbol):
+                    balanced = False
+        index += 1
+
+    if balanced and s.isEmpty():
+        return True
+    else:
+        return False
+
+def matches(open, close):
+    opens = "({["
+    closers = ")}]"
+    return opens.index(open) == closers.index(close)
+
+print(symChecker('[{(())}]'))
+print(symChecker('{[(]}'))
+
+
 
