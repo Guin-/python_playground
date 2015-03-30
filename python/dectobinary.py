@@ -36,3 +36,26 @@ def divideBy2(decNumber):
     return binString
 
 print(divideBy2(42))
+
+# Converting decimal numbers to any other base(binary, octal, hexadecimal )
+def baseConverter(decNumber, base):
+    remstack = Stack()
+    digits = '0123456789ABCDEF'
+
+    while decNumber > 0:
+        rem = decNumber % base
+        remstack.push(rem)
+        decNumber = decNumber // base
+
+    newString = ''
+    while not remstack.isEmpty():
+        newString = newString + digits[remstack.pop()]
+
+    return newString
+
+print(baseConverter(25, 2))
+
+print(baseConverter(25, 8))
+
+print(baseConverter(256, 16))
+print(baseConverter(26, 26))
